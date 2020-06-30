@@ -1,0 +1,142 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Details
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        <ion-icon slot="icon-only" color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="hash-tag-cont horizontal-scroll">
+
+    <span>
+      <ion-chip>
+        <span class="hash">#</span>
+        <ion-label>kolfluence</ion-label>
+      </ion-chip>
+    </span>
+
+    <span *ngFor="let item of hashTagList">
+      <ion-chip *ngIf="item.show" (click)="hashTagClick(item)">
+        <span class="hash">#</span>
+        <ion-label>{{item.value}}</ion-label>
+      </ion-chip>
+    </span>
+
+  </div>
+
+  <div class="hash-tag-selector-cont">
+    <div class="width20"> HashTag:</div>
+    <div class="horizontal-scroll width80"> <span *ngFor="let item of hashTagList">
+        <ion-chip *ngIf="!item.show" (click)="hashTagClick(item)">
+          <span class="hash">#</span>
+          <ion-label>{{item.value}}</ion-label>
+        </ion-chip>
+      </span>
+    </div>
+  </div>
+
+  <ion-slides mode="ios" [options]="slideOpts" pager="false">
+    <ion-slide *ngFor="let item of searchName ">
+      <ion-card>
+        <ion-card-content class="ion-no-padding">
+          <ion-icon class="img-video-icon" *ngIf="item.type =='img'" name="image-outline"></ion-icon>
+          <ion-icon class="img-video-icon" *ngIf="item.type =='video'" name="play-circle"></ion-icon>
+          <!-- *ngIf="item.type =='img'" -->
+          <img class="img-size" src="../../assets/images/{{item.src}}.png" />
+
+          <div class="count-icon">
+            <span class="center" (click)="likeCount(item)">
+              <ion-icon *ngIf="!item.liked" name="thumbs-up-outline" slot="start"></ion-icon>
+              <ion-icon *ngIf="item.liked" name="thumbs-up"></ion-icon>
+              <span class="count">{{item.likeCount | thousand}}</span>
+            </span>
+            <span class="center" (click)="heartCount(item)">
+              <ion-icon *ngIf="!item.hearted" name="heart-outline" slot="end"></ion-icon>
+              <ion-icon *ngIf="item.hearted" name="heart"></ion-icon>
+              <span class="count">{{item.heartCount | thousand}}</span>
+            </span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="space-btw ion-padding">
+    <span>Similar Post</span>
+    <span>{{similarPost.length}} Posts</span>
+  </div>
+  <div class="grid-col">
+    <ion-card *ngFor="let item of similarPost">
+      <ion-card-content class="ion-no-padding">
+        <ion-icon class="img-video-icon" *ngIf="item.type =='img'" name="image-outline"></ion-icon>
+        <ion-icon class="img-video-icon" *ngIf="item.type =='video'" name="play-circle"></ion-icon>
+        <!--*ngIf="item.type =='img'" -->
+        <img class="img-size" src="../../assets/images/{{item.src}}.png" />
+
+
+        <div class="count-icon">
+          <span class="center" (click)="likeCount(item)">
+            <ion-icon *ngIf="!item.liked" name="thumbs-up-outline" slot="start"></ion-icon>
+            <ion-icon *ngIf="item.liked" name="thumbs-up"></ion-icon>
+            <span class="count">{{item.likeCount | thousand}}</span>
+          </span>
+          <span class="center" (click)="heartCount(item)">
+            <ion-icon *ngIf="!item.hearted" name="heart-outline" slot="end"></ion-icon>
+            <ion-icon *ngIf="item.hearted" name="heart"></ion-icon>
+            <span class="count">{{item.heartCount | thousand}}</span>
+          </span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <!-- <div class="your-post-cont">
+    <div class="ion-padding" *ngFor="let item of name">
+
+      <ion-icon class="img-video-icon" *ngIf="item.type =='img'" name="image-outline"></ion-icon>
+      <ion-icon class="img-video-icon" *ngIf="item.type =='video'" name="play-circle"></ion-icon> -->
+  <!-- <div> -->
+  <!-- <img class="img-size" *ngIf="item.type =='img'" src="../../assets/images/{{item.src}}.png" />
+
+      <ion-buttons slot="start">
+        <ion-button (click)="onClick()">
+          <ion-icon name="thumbs-up-outline" slot="start"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="onClick()">
+          <ion-icon name="heart-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-buttons> -->
+  <!-- 
+            <video class="img-size" *ngIf="item.type =='video'" controls>
+              <source src="../../assets/videos/{{item.src}}.mp4" type="video/mp4">
+            </video> -->
+
+  <!-- </div> -->
+
+  <!-- <ion-buttons >
+          <ion-button (click)="onClick()">
+            <ion-icon name="thumbs-up-outline" slot="start"></ion-icon>
+            <ion-icon name="thumbs-up-outline" slot="end"></ion-icon>
+          </ion-button>
+        </ion-buttons> -->
+
+  <!-- </div> -->
+
+  <!-- </div> -->
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+</ion-content>
